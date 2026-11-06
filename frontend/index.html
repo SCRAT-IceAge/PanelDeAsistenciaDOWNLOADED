@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panel de Asistencia de Comunicación</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+  <header class="barra">
+    <div class="marca"><span class="marca-punto"></span> Panel de Asistencia</div>
+    <div class="barra-usuario" id="barra-usuario" hidden>
+      <span id="nombre-usuario"></span>
+      <button class="btn-texto" id="btn-salir-sesion">Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main>
+    <!-- LOGIN (Diagrama de Secuencia 1) -->
+    <section class="vista tarjeta angosta" id="vista-login" hidden>
+      <h1>Iniciar sesión</h1>
+      <p class="sub">Contá cómo te sentís en la reunión, sin que nadie sepa que fuiste vos.</p>
+      <form id="form-login">
+        <label>Usuario <input name="usuario" autocomplete="username" required /></label>
+        <label>Contraseña <input name="password" type="password" autocomplete="current-password" required /></label>
+        <p class="error"></p>
+        <button class="btn" type="submit">Log in</button>
+      </form>
+      <p class="pie-form">¿No tenés cuenta? <button class="btn-texto" data-ir="registro">Registrarse</button></p>
+    </section>
+
+    <!-- REGISTRO -->
+    <section class="vista tarjeta angosta" id="vista-registro" hidden>
+      <h1>Crear cuenta</h1>
+      <form id="form-registro">
+        <label>Usuario <input name="usuario" autocomplete="username" required /></label>
+        <label>Contraseña <input name="password" type="password" autocomplete="new-password" required />
+          <small>Al menos 8 caracteres</small></label>
+        <p class="error"></p>
+        <div class="fila-botones">
+          <button class="btn btn-secundario" type="button" data-ir="login">Back</button>
+          <button class="btn" type="submit">Crear usuario</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ELEGIR LA REUNIÓN -->
+    <section class="vista tarjeta angosta" id="vista-sala" hidden>
+      <h1>¿A qué reunión vas?</h1>
+      <p class="sub">Escribí el mismo código que tus compañeros (por ejemplo, el que pasó el profe en el chat del Meet).</p>
+      <form id="form-sala">
+        <label>Código de la reunión <input name="sala" placeholder="Ej: PP3-CLASE5" maxlength="30" required /></label>
+        <p class="error"></p>
+        <button class="btn" type="submit">Entrar</button>
+      </form>
+    </section>
+
+    <!-- PANEL DE ASISTENCIA (Diagrama de Secuencia 2) -->
+    <section class="vista" id="vista-panel" hidden>
+      <div class="cabecera-sala">
+        <div>
+          <p class="etiqueta">Reunión</p>
+          <h1 id="sala-nombre"></h1>
+        </div>
+        <span class="pildora" id="participantes"></span>
+      </div>
+
+      <div class="grilla-panel">
+        <div class="tarjeta">
+          <h2>Entrada anónima</h2>
+          <p class="sub">Marcá cómo estás. Nadie ve tus valores.</p>
+          <div id="sliders"></div>
+        </div>
+        <div class="tarjeta">
+          <h2>Salida promedio</h2>
+          <p class="sub">Cómo está la reunión en general.</p>
+          <div id="promedios"></div>
+          <p class="estado" id="estado"></p>
+        </div>
+      </div>
+
+      <div class="fila-botones acciones-sala">
+        <button class="btn btn-secundario" id="btn-salir-sala">Back</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
